@@ -69,7 +69,11 @@ public class Main {
 					tmp[1] = nc;
 					tmp[2] = current[2] + 1;
 					check[nr][nc] = tmp[2];
-					visited[nr][nc] = true;
+
+					// queue에 넣기 전 체크하기! queue에서 나와서 방문할 때 체크하면 중복된 값이 queue에 들어갈 수 있음
+					// visited[r][c]가 아니라 visited[nr][nc] 인 것도 확인!!
+					
+					visited[nr][nc] = true; 
 					queue.add(tmp);
 
 				}
