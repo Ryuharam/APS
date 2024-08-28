@@ -1,0 +1,3 @@
+1. Stack 이용해보기 : aFood, bFood
+2. 재귀로 음식을 A에 넣는 경우, B에 넣는 경우 나누기 -> A와 B가 반반씩(N/2) 가져야 하는 것 잊지말기!
+3.  Ascore, Bscore 매개변수로 넣어서 계산해보기. aFood와 bFood에 push 하기 전에 계산...
