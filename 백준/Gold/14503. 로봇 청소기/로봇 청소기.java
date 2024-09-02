@@ -61,28 +61,28 @@ public class Main {
 
 	private static void run() {
 		
-		if(room[r][c]==0) {
+		if(room[r][c]==0) {	// 청소
 			clean++;
 			room[r][c] = 2;
 		}
 		
-		if(check()) {
+		if(check()) {	// 주변 4칸에 청소 안 한 곳 있으면
 			d = (d-1+4)%4;
 			int nr = r + dr[d];
 			int nc = c + dc[d];
-			if(nr>=0 && nr<N && nc>=0 && nc<M && room[nr][nc]==0) {
+			if(nr>=0 && nr<N && nc>=0 && nc<M && room[nr][nc]==0) {	// 회전 후 앞 청소 가능하면
 				r = nr;
 				c = nc;
 				run();
-			}else{
+			}else{	// 회전 후 앞에 청소 할 수 없으면
 				run();
 			}
 			
-		}else {
+		}else {	// 청소 안 한 곳 없으면
 			int nr = r - dr[d];
 			int nc = c - dc[d];
 			
-			if(nr>=0 && nr<N && nc>=0 && nc<M && room[nr][nc]!=1) {
+			if(nr>=0 && nr<N && nc>=0 && nc<M && room[nr][nc]!=1) {	// 후진할 수 있으면
 				r = nr;
 				c = nc;
 				run();
@@ -97,7 +97,7 @@ public class Main {
 
 	private static boolean check() {
 		
-		int tmpD = d;
+		int tmpD = d; // 실제 방향 바꾸지 않고 확인하기 위해
 		
 		int nr = r + dr[tmpD];
 		int nc = c + dc[tmpD];
@@ -116,5 +116,6 @@ public class Main {
 		return false;
 	}
 
+	
 	
 }
