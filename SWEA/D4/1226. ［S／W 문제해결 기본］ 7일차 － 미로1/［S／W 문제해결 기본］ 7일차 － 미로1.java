@@ -53,7 +53,7 @@ public class Solution {
 			
 			queue.add(start);
 			
-			DFS();
+			BFS();
 			
 			System.out.println("#"+n+" "+answer);
 
@@ -63,7 +63,7 @@ public class Solution {
 		
 	}
 
-	private static void DFS() {
+	private static void BFS() {
 		
 		int[] curr = queue.poll();
 		
@@ -87,7 +87,7 @@ public class Solution {
 		}
 		
 		if(!queue.isEmpty()) {
-			DFS();
+			BFS();
 		}
 		
 	}
