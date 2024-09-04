@@ -67,7 +67,10 @@ public class Solution {
 	}
 
 
-	private static void check(int r, int c, int day) {
+	private static void check(int r, int c, int day) {	
+		// queue 쓰지 않아도 재귀 함수로 check 가능
+		// nr, nc 가능하면 check(nr, nc, day) 재귀 돌린다
+		// 기저 조건이 없어도 if 조건에 해당하면 재귀를 돌리기 때문에 괜찮다
 		
 		Queue<int[]> queue = new LinkedList<>();
 		
