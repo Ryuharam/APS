@@ -1,3 +1,12 @@
+// bomb의 시작점이 아니라 끝 점을 확인해서 역으로 확인
+// list나 stack 활용
+// 배열을 쓰고 size(포인터?)를 체크해서 폭발 시 덮어쓰는 방법도 있음
+
+
+
+
+
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
