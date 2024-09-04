@@ -30,16 +30,18 @@ public class Solution {
 				int A = sc.nextInt();
 				int B = sc.nextInt();
 				
-				p[findSet(A)] = findSet(B);
+				p[findSet(A)] = findSet(B);	
+				// A와 B의 최고 조상의 크기를 비교하여 연결 규칙을 정할 수 있지만
+				// 이 문제에서는 무리의 개수를 구하면 되기 때문에 필요 없다
 				
 			}
 			
-			for(int i=1 ; i<=V ; i++) {
+			for(int i=1 ; i<=V ; i++) {	// 갱신이 안 된 자식? 이 있을 수 있으므로 갱신 해줘야 한다
 				p[findSet(i)] = findSet(i);
 			}
 			
 			
-			Set<Integer> cnt = new HashSet<>();
+			Set<Integer> cnt = new HashSet<>();	// Set을 쓸 수 도 있고, boolean 배열을 만들어서 확인 할 수 도 있다
 			
 			for(int i=1 ; i<=V ; i++) {
 				cnt.add(p[i]);
