@@ -36,7 +36,7 @@ public class Solution {
 				
 			}
 			
-			for(int i=1 ; i<=V ; i++) {	// 갱신이 안 된 자식? 이 있을 수 있으므로 갱신 해줘야 한다
+			for(int i=1 ; i<=V ; i++) {	// 갱신이 안 된 자식? 이 있을 수 있으므로 갱신 해줘야 한다 => 갱신 하지 않아도 자신의 대표가 자기 자신인 개수 세면 된다.
 				p[findSet(i)] = findSet(i);
 			}
 			
