@@ -12,7 +12,7 @@ jobs:
        with:
          fetch-depth: 0
 
-     - name: Push to cs-study organization repo
+     - name: Push to aps-study organization repo
        env:
          TOKEN: ${{ secrets.ACCESS_TOKEN }}
        run: |
@@ -22,14 +22,14 @@ jobs:
          ls -la
          
          rm -rf aps-study-repo || true
-         git clone https://dlfnadl97:${{ secrets.ACCESS_TOKEN }}@github.com/ssafy08-study/aps-study.git aps-study-repo
+         git clone https://Ryuharam:${{ secrets.ACCESS_TOKEN }}@github.com/ssafy08-study/aps-study.git aps-study-repo
          
          mkdir -p aps-study-repo/유하람
          
          rsync -av --exclude='.git' --exclude='.github' --exclude='aps-study-repo' ./ aps-study-repo/유하람/
          
          cd aps-study-repo
-         git config --global user.name “dlfnadl97”
+         git config --global user.name “유하람”
          git config --global user.email “dlfnadl97@naver.com”
          
          echo "Git status:"
