@@ -1,0 +1,46 @@
+name: Sync Files to Organization Repo
+on:
+ push:
+   branches:
+     - main
+jobs:
+ sync-files:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout source repository
+       uses: actions/checkout@v2
+       with:
+         fetch-depth: 0
+
+     - name: Push to cs-study organization repo
+       env:
+         TOKEN: ${{ secrets.ACCESS_TOKEN }}
+       run: |
+         set -e
+         
+         echo "Current directory contents:"
+         ls -la
+         
+         rm -rf aps-study-repo || true
+         git clone https://dlfnadl97:${{ secrets.ACCESS_TOKEN }}@github.com/ssafy08-study/aps-study.git aps-study-repo
+         
+         mkdir -p aps-study-repo/유하람
+         
+         rsync -av --exclude='.git' --exclude='.github' --exclude='aps-study-repo' ./ aps-study-repo/유하람/
+         
+         cd aps-study-repo
+         git config --global user.name “dlfnadl97”
+         git config --global user.email “dlfnadl97@naver.com”
+         
+         echo "Git status:"
+         git status
+         
+         git add -A
+         
+         if git diff --staged --quiet; then
+           echo "No changes to commit."
+           exit 0
+         else
+           git commit -m "$(date '+%Y-%m-%d') 문제 풀이 업로드"
+           git push
+         fi 
