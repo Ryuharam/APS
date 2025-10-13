@@ -15,7 +15,6 @@ public class Main {
         
         board = new char[R][C];
         boolean[] isUsed = new boolean[26];
-        boolean[][] visited = new boolean[R][C];
         ans = 0;
         
         for(int r=0 ; r<R ; r++){
@@ -25,10 +24,9 @@ public class Main {
             }
         }
         
-        visited[0][0] = true;
         isUsed[board[0][0]-65] = true;
         
-        btk(0,0,isUsed,visited,1);
+        btk(0,0,isUsed,1);
         
         System.out.println(ans);
         
@@ -37,18 +35,18 @@ public class Main {
     static int[] dr = {0,1,0,-1};
     static int[] dc = {1,0,-1,0};
     
-    static void btk(int r, int c, boolean[] isUsed, boolean[][] visited, int cnt){
+    static void btk(int r, int c, boolean[] isUsed, int cnt){
         ans = Math.max(ans, cnt);
+        
+        if(cnt>=26) return;
         
         for(int d=0 ; d<4 ; d++){
             int nr = r + dr[d];
             int nc = c + dc[d];
             
-            if(nr>=0 && nr<R && nc>=0 && nc<C && !visited[nr][nc] && !isUsed[board[nr][nc]-65]){
-                visited[nr][nc] = true;
+            if(nr>=0 && nr<R && nc>=0 && nc<C && !isUsed[board[nr][nc]-65]){
                 isUsed[board[nr][nc]-65] = true;
-                btk(nr,nc,isUsed,visited,cnt+1);
-                visited[nr][nc] = false;
+                btk(nr,nc,isUsed,cnt+1);
                 isUsed[board[nr][nc]-65] = false;
             }
         }
