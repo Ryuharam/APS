@@ -1,32 +1,24 @@
 import heapq
-from collections import deque
 
 def solution(tickets):
     route = {}
-    
     for a, b in tickets:
         if a in route:
-            route[a].append(b)
+            heapq.heappush(route[a], b)
         else:
             route[a] = [b]
     
-    print(route)
-    
+    stack = ["ICN"]
     answer = []
-    tmp = []
-    heapq.heappush(tmp, "ICN")
     
-    while tmp:
-        curr = heapq.heappop(tmp)
-        answer.append(curr)
-        print(tmp)
-        
-        if curr not in route:
-            continue
-        
-        for next in route[curr]:
-            heapq.heappush(tmp, next)
-        
-        route.pop(curr)
-        
-    return answer
+    while stack:
+        curr = stack[-1]
+            
+        if curr in route and route[curr]:
+            next_city = heapq.heappop(route[curr])
+            stack.append(next_city)
+        else:
+            answer.append(curr)
+            stack.pop()
+            
+    return answer[::-1]
