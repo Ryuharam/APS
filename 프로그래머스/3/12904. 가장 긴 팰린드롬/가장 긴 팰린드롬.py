@@ -1,20 +1,28 @@
 def solution(s):
-    answer = 1
+    s = '#'+'#'.join(s)+'#'
     n = len(s)
+    p = [0] * n
     
-    def check(left, right, cnt):
-        
-        while 0 <= left and right < n and s[left] == s[right]:
-            cnt += 2
-            left -= 1
-            right += 1
-        
-        return cnt
+    answer = 0
+
+    C = 0
+    R = 0
     
     for i in range(n):
-        answer = max(answer, check(i-1, i+1, 1))
-        answer = max(answer, check(i, i+1, 0))
+        if i < R:
+            m_i = 2 * C - i
+            p[i] = min(p[m_i], R - i)
         
+        left = i - p[i] - 1
+        right = i + p[i] + 1
         
+        while 0 <= left and right < n and s[left] == s[right]:
+            p[i] += 1
+            left -= 1
+            right += 1
+            
+        if answer <= p[i]:
+            C = i
+            R = i + p[i]
+            answer = p[i]
     return answer
-
